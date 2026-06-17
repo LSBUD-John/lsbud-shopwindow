@@ -215,8 +215,6 @@ z-index:11;
 <script>
 function toggle(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block'}
 </script>
-</body>
-</html>
 <script>
 let basket = [];
 
@@ -240,13 +238,22 @@ function updateBasket() {
   document.getElementById("basketTotal").innerText = "£" + total;
 }
 
-// Placeholder “View Options”
+// View Options
 function viewOptions(name) {
   alert("Viewing options for: " + name);
 }
 
-// Placeholder Digital Insight action
+// Digital Insight
 function viewService() {
   alert("Quote request / consultation flow");
 }
+
+// Tooltip toggle
+function toggle(id){
+  let e=document.getElementById(id);
+  e.style.display=e.style.display==='block'?'none':'block'
+}
 </script>
+</body>
+</html>
+
