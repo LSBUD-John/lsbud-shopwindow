@@ -12,7 +12,10 @@ body{font-family:Segoe UI;margin:0;background:#eef2f6}
 .basket{width:300px;background:white;border-left:1px solid #ccc;padding:20px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{background:white;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.12);overflow:hidden;position:relative}
-.visual{height:140px;background:#dfe6ec}
+.visual{
+height:140px;
+position:relative;
+}
 .content{padding:14px}
 .title{font-weight:600}
 .price{font-weight:bold;margin:6px 0}
@@ -74,11 +77,12 @@ width:200px;
 
 /* VISUAL OVERLAYS */
 .vis-map{
-background:linear-gradient(#ccc 20%, transparent 20%),
-linear-gradient(90deg,#ccc 20%, transparent 20%);
+background:
+linear-gradient(#999 20%, transparent 20%),
+linear-gradient(90deg,#999 20%, transparent 20%);
 background-size:40px 40px;
 }
-
+ 
 .vis-utilities{
 background:
 linear-gradient(45deg, transparent 48%, #d9534f 50%, transparent 52%),
@@ -180,7 +184,8 @@ Electricity capacity & network insight
 
 <div class="card">
 <div class="badge">Risk</div>
-info" onclick="toggle('t5')">i</div>
+<div class="visual vis-pipeline"></div>
+<div class="info" onclick="toggle('t5')">i</div>
 <div class="tooltip" id="t5">
 Pipeline risk and underground assets
 </div>
