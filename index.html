@@ -68,6 +68,34 @@ z-index:11;
 .data svg path{stroke:#1f4e79;stroke-width:2;fill:none}
 .data svg path.alt{stroke:#6c8fb3}
 
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.25);
+  transition: 0.3s;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.close {
+  cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -98,7 +126,7 @@ z-index:11;
 <div class='content'>
 <div class='title'>Planning Applications</div>
 <div class='price'>£125</div>
-<button class="btn" onclick="viewOptions('Planning Applications')">
+<button class="btn" onclick="viewOptions('Planning Applications', 125)">
   View Options
 </button>
 
@@ -138,7 +166,9 @@ z-index:11;
 <div class='content'>
 <div class='title'>Environmental Report</div>
 <div class='price'>£250</div>
-<button class='btn'>View Options</button>
+<button class='btn' onclick="viewOptions('Environmental Report', 250)">
+  View Options
+</button>
 </div>
 </div>
 
@@ -158,7 +188,9 @@ z-index:11;
 <div class='content'>
 <div class='title'>Electricity Capacity</div>
 <div class='price'>£195</div>
-<button class='btn'>View Options</button>
+<button class='btn' onclick="viewOptions('Electricity Capacity', 195)">
+  View Options
+</button>
 </div>
 </div>
 
@@ -175,7 +207,10 @@ z-index:11;
 <div class='content'>
 <div class='title'>Pipeline Risk</div>
 <div class='price'>£175</div>
-<button class='btn'>Add to Basket</button>
+<button class='btn' onclick="addToBasket('Pipeline Risk', 175)">
+  Add to Basket
+</button>
+
 </div>
 </div>
 
@@ -239,8 +274,14 @@ basket.forEach(item => {
 }
 
 // View Options
-function viewOptions(name) {
-  alert("Viewing options for: " + name);
+
+let currentProduct = {};
+
+function viewOptions(name, price) {
+  currentProduct = { name, price };
+
+  document.getElementById("drawerTitle").innerText = name;
+  document.getElementById("drawer").classList.add("open");
 }
 
 // Digital Insight
@@ -253,6 +294,40 @@ function toggle(id){
   let e=document.getElementById(id);
   e.style.display=e.style.display==='block'?'none':'block'
 }
+<!-- SLIDE-OUT PANEL -->
+<div id="drawer" class="drawer">
+  <div class="drawer-header">
+    <span id="drawerTitle"></span>
+    <span class="close" onclick="closeDrawer()">✖</span>
+  </div>
+
+  <div class="drawer-body">
+    <p>Select delivery speed:</p>
+    <select id="delivery">
+      <option value="0">Standard (included)</option>
+      <option value="50">Express +£50</option>
+    </select>
+
+    <br><br>
+
+    <button class="btn" onclick="confirmAdd()">
+      Add to Basket
+    </button>
+  </div>
+</div>  
+
+function closeDrawer() {
+  document.getElementById("drawer").classList.remove("open");
+}
+
+function confirmAdd() {
+  let extra = parseInt(document.getElementById("delivery").value);
+
+  addToBasket(currentProduct.name, currentProduct.price + extra);
+
+  closeDrawer();
+}
+  
 </script>
 </body>
 </html>
