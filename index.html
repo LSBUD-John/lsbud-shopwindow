@@ -264,6 +264,7 @@ function updateBasket() {
   let total = 0;
   let html = "";
   
+
 basket.forEach(item => {
     html += item.name + " - £" + item.price + "<br>";
     total += item.price;
@@ -294,6 +295,22 @@ function toggle(id){
   let e=document.getElementById(id);
   e.style.display=e.style.display==='block'?'none':'block'
 }
+
+</div>  
+
+function closeDrawer() {
+  document.getElementById("drawer").classList.remove("open");
+}
+
+function confirmAdd() {
+  let extra = parseInt(document.getElementById("delivery").value);
+
+  addToBasket(currentProduct.name, currentProduct.price + extra);
+
+  closeDrawer();
+}
+</div>  <!-- END OF CONTAINER -->
+
 <!-- SLIDE-OUT PANEL -->
 <div id="drawer" class="drawer">
   <div class="drawer-header">
@@ -314,20 +331,8 @@ function toggle(id){
       Add to Basket
     </button>
   </div>
-</div>  
-
-function closeDrawer() {
-  document.getElementById("drawer").classList.remove("open");
-}
-
-function confirmAdd() {
-  let extra = parseInt(document.getElementById("delivery").value);
-
-  addToBasket(currentProduct.name, currentProduct.price + extra);
-
-  closeDrawer();
-}
-  
+</div>
+ 
 </script>
 </body>
 </html>
