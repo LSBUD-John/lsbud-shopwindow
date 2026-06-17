@@ -228,11 +228,11 @@ function addToBasket(name, price) {
 function updateBasket() {
   let total = 0;
   let html = "";
-
-  basket.forEach(item => {
+  
+basket.forEach(item => {
     html += item.name + " - £" + item.price + "<br>";
     total += item.price;
-  });
+});
 
   document.getElementById("basketList").innerHTML = html;
   document.getElementById("basketTotal").innerText = "£" + total;
