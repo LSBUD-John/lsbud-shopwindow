@@ -41,6 +41,73 @@ margin-bottom:20px;
 }
 
 .close{cursor:pointer}
+
+ /* INFO BUTTON */
+.info{
+position:absolute;
+top:10px;
+right:10px;
+background:white;
+border:2px solid #1f4e79;
+width:26px;
+height:26px;
+border-radius:50%;
+text-align:center;
+line-height:24px;
+cursor:pointer;
+font-weight:bold;
+z-index:5;
+}
+
+.tooltip{
+position:absolute;
+top:40px;
+right:10px;
+background:#1f4e79;
+color:white;
+padding:8px;
+font-size:12px;
+border-radius:5px;
+display:none;
+width:200px;
+}
+
+/* VISUAL OVERLAYS */
+.vis-map{
+background:linear-gradient(#ccc 20%, transparent 20%),
+linear-gradient(90deg,#ccc 20%, transparent 20%);
+background-size:40px 40px;
+}
+
+.vis-utilities{
+background:
+linear-gradient(45deg, transparent 48%, #d9534f 50%, transparent 52%),
+linear-gradient(-45deg, transparent 48%, #ff6b3d 50%, transparent 52%);
+background-size:40px 40px;
+}
+
+.vis-env{
+background:linear-gradient(to bottom,#6fb3d2 50%, transparent 50%);
+}
+
+.vis-electric{
+background:
+linear-gradient(to right,#1f4e79 2px, transparent 2px),
+linear-gradient(to bottom,#1f4e79 2px, transparent 2px);
+background-size:40px 40px;
+}
+
+.vis-pipeline{
+background:linear-gradient(45deg, transparent 48%, red 50%, transparent 52%);
+}
+
+.vis-data{
+background:
+linear-gradient(45deg,#1f4e79 10%, transparent 10%),
+linear-gradient(-45deg,#6c8fb3 10%, transparent 10%);
+background-size:60px 60px;
+}
+
 </style>
 
 </head>
@@ -56,7 +123,12 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">⭐</div>
-<div class="visual"></div>
+
+<div class="visual vis-map"></div>
+<div class="info" onclick="toggle('t1')">i</div>
+<div class="tooltip" id="t1">
+Planning applications and nearby sites
+</div>
 <div class="content">
 <div class="title">Planning Applications</div>
 <div class="price">£125</div>
@@ -66,7 +138,11 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">⚡</div>
-<div class="visual"></div>
+<div class="visual vis-utilities"></div>
+<div class="info" onclick="toggle('t2')">i</div>
+<div class="tooltip" id="t2">
+Underground utilities overview
+</div>
 <div class="content">
 <div class="title">Site Snapshot</div>
 <div class="price">£75</div>
@@ -76,7 +152,11 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">Best</div>
-<div class="visual"></div>
+<div class="visual vis-env"></div>
+<div class="info" onclick="toggle('t3')">i</div>
+<div class="tooltip" id="t3">
+Flood risk and environmental constraints
+</div>
 <div class="content">
 <div class="title">Environmental Report</div>
 <div class="price">£250</div>
@@ -86,7 +166,11 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">Popular</div>
-<div class="visual"></div>
+<div class="visual vis-electric"></div>
+<div class="info" onclick="toggle('t4')">i</div>
+<div class="tooltip" id="t4">
+Electricity capacity & network insight
+</div>
 <div class="content">
 <div class="title">Electricity Capacity</div>
 <div class="price">£195</div>
@@ -96,7 +180,10 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">Risk</div>
-<div class="visual"></div>
+info" onclick="toggle('t5')">i</div>
+<div class="tooltip" id="t5">
+Pipeline risk and underground assets
+</div>
 <div class="content">
 <div class="title">Pipeline Risk</div>
 <div class="price">£175</div>
@@ -106,7 +193,11 @@ margin-bottom:20px;
 
 <div class="card">
 <div class="badge">💼</div>
-<div class="visual"></div>
+<div class="visual vis-data"></div>
+<div class="info" onclick="toggle('t6')">i</div>
+<div class="tooltip" id="t6">
+Full multi-layer infrastructure intelligence
+</div>
 <div class="content">
 <div class="title">Digital Insight</div>
 <div class="price">Custom</div>
@@ -180,6 +271,11 @@ function confirmAdd(){
 let extra=parseInt(document.getElementById("delivery").value);
 addToBasket(current.name,current.price+extra);
 closeDrawer();
+}
+
+function toggle(id){
+  let el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }
 
 </script>
