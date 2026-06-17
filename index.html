@@ -98,7 +98,10 @@ z-index:11;
 <div class='content'>
 <div class='title'>Planning Applications</div>
 <div class='price'>£125</div>
-<button class='btn'>View Options</button>
+<button class="btn" onclick="viewOptions('Planning Applications')">
+  View Options
+</button>
+
 </div>
 </div>
 
@@ -116,7 +119,9 @@ z-index:11;
 <div class='content'>
 <div class='title'>Site Snapshot</div>
 <div class='price'>£75</div>
-<button class='btn'>Add to Basket</button>
+<button class='btn'onclick="addToBasket('Site Snapshot', 75)">
+  Add to Basket
+</button>
 </div>
 </div>
 
@@ -189,7 +194,10 @@ z-index:11;
 <div class='content'>
 <div class='title'>Digital Insight Advanced</div>
 <div class='price'>Custom</div>
-<button class='btn'>View Service</button>
+<button class="btn" onclick="viewService()">
+  View Service
+</button>
+
 </div>
 </div>
 
@@ -197,8 +205,10 @@ z-index:11;
 </div>
 
 <div class='basket'>
+
 <h3>Basket</h3>
-<p>£0</p>
+  <div id="basketList"></div>
+  <b id="basketTotal">£0</b>
 </div>
 </div>
 
@@ -207,3 +217,36 @@ function toggle(id){let e=document.getElementById(id);e.style.display=e.style.di
 </script>
 </body>
 </html>
+<script>
+let basket = [];
+
+// Add item to basket
+function addToBasket(name, price) {
+  basket.push({name, price});
+  updateBasket();
+}
+
+// Update basket UI
+function updateBasket() {
+  let total = 0;
+  let html = "";
+
+  basket.forEach(item => {
+    html += item.name + " - £" + item.price + "<br>";
+    total += item.price;
+  });
+
+  document.getElementById("basketList").innerHTML = html;
+  document.getElementById("basketTotal").innerText = "£" + total;
+}
+
+// Placeholder “View Options”
+function viewOptions(name) {
+  alert("Viewing options for: " + name);
+}
+
+// Placeholder Digital Insight action
+function viewService() {
+  alert("Quote request / consultation flow");
+}
+</script>
