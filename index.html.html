@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>LSBUD Exec Demo (Visuals FINAL v2)</title>
+<style>
+body{font-family:Segoe UI;margin:0;background:#eef2f6}
+.header{background:#1f4e79;color:white;padding:16px;font-size:20px}
+.container{display:flex}
+.main{flex:1;padding:20px}
+.basket{width:300px;background:white;border-left:1px solid #ccc;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.12);overflow:hidden;position:relative}
+.visual{height:170px;background:#f0f3f6;position:relative}
+.content{padding:14px}
+.title{font-weight:600}
+.price{font-weight:bold;margin:6px 0}
+.btn{background:#1f4e79;color:white;border:none;padding:10px;width:100%;border-radius:4px;cursor:pointer}
+.badge{position:absolute;top:10px;left:10px;background:#ffb300;color:white;font-size:12px;padding:4px 8px;border-radius:4px}
+
+/* INFO BUTTON FIX */
+.info{
+position:absolute;
+top:10px;
+right:10px;
+background:#ffffff;
+border:2px solid #1f4e79;
+width:26px;
+height:26px;
+border-radius:50%;
+text-align:center;
+line-height:24px;
+font-weight:bold;
+cursor:pointer;
+z-index:10;
+}
+
+.tooltip{
+position:absolute;
+top:40px;
+right:10px;
+background:#1f4e79;
+color:white;
+padding:10px;
+font-size:12px;
+width:240px;
+border-radius:6px;
+display:none;
+z-index:11;
+}
+
+/* REAL MAP STYLE */
+.map svg{width:100%;height:100%}
+.roads{stroke:#b0b7bf;stroke-width:6}
+.primary{stroke:#888;stroke-width:10}
+.marker{fill:#1f4e79}
+
+.utilities svg line{stroke:#ff6b3d;stroke-width:3}
+.utilities svg path{stroke:#d9534f;stroke-width:2;fill:none}
+
+.env svg rect{fill:#69b3d0;opacity:0.6}
+
+.elec svg line{stroke:#1f4e79;stroke-width:2}
+.elec svg circle{fill:#1f4e79}
+
+.pipeline svg path{stroke:red;stroke-width:4;fill:none}
+
+.data svg path{stroke:#1f4e79;stroke-width:2;fill:none}
+.data svg path.alt{stroke:#6c8fb3}
+
+</style>
+</head>
+<body>
+<div class='header'>LSBUD – Executive Demo Shop Window</div>
+
+<div class='container'>
+<div class='main'>
+<div style='background:#e8f1fb;padding:10px;margin-bottom:20px;border-left:4px solid #1f4e79'>
+<b>Planning Pack Bundle:</b> Planning + Environmental + Snapshot
+</div>
+
+<div class='grid'>
+
+<!-- Planning -->
+<div class='card'>
+<div class='badge'>⭐</div>
+<div class='info' onclick="toggle('t1')">i</div>
+<div class='tooltip' id='t1'>Planning applications mapped with nearby development points</div>
+<div class='visual map'>
+<svg>
+<line x1='0' y1='60' x2='300' y2='60' class='primary'/>
+<line x1='0' y1='120' x2='300' y2='120' class='roads'/>
+<circle cx='80' cy='80' r='5' class='marker'/>
+<circle cx='150' cy='100' r='5' class='marker'/>
+<circle cx='200' cy='70' r='5' class='marker'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Planning Applications</div>
+<div class='price'>£125</div>
+<button class='btn'>View Options</button>
+</div>
+</div>
+
+<!-- Snapshot -->
+<div class='card'>
+<div class='badge'>⚡</div>
+<div class='info' onclick="toggle('t2')">i</div>
+<div class='tooltip' id='t2'>Underground utilities (gas, water, electric lines)</div>
+<div class='visual utilities'>
+<svg>
+<line x1='10' y1='20' x2='290' y2='140'/>
+<path d='M0 140 C100 20 200 120 300 80'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Site Snapshot</div>
+<div class='price'>£75</div>
+<button class='btn'>Add to Basket</button>
+</div>
+</div>
+
+<!-- Environmental -->
+<div class='card'>
+<div class='badge'>Best Value</div>
+<div class='info' onclick="toggle('t3')">i</div>
+<div class='tooltip' id='t3'>Flood zones and environmental constraints overlay</div>
+<div class='visual env'>
+<svg>
+<rect x='0' y='90' width='100%' height='80'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Environmental Report</div>
+<div class='price'>£250</div>
+<button class='btn'>View Options</button>
+</div>
+</div>
+
+<!-- Electricity -->
+<div class='card'>
+<div class='badge'>Popular</div>
+<div class='info' onclick="toggle('t4')">i</div>
+<div class='tooltip' id='t4'>Electricity network nodes and capacity links</div>
+<div class='visual elec'>
+<svg>
+<line x1='20' y1='40' x2='200' y2='100'/>
+<line x1='200' y1='100' x2='280' y2='60'/>
+<circle cx='200' cy='100' r='5'/>
+<circle cx='80' cy='60' r='5'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Electricity Capacity</div>
+<div class='price'>£195</div>
+<button class='btn'>View Options</button>
+</div>
+</div>
+
+<!-- Pipeline -->
+<div class='card'>
+<div class='badge'>Risk</div>
+<div class='info' onclick="toggle('t5')">i</div>
+<div class='tooltip' id='t5'>Pipeline routes crossing site boundary</div>
+<div class='visual pipeline'>
+<svg>
+<path d='M0 30 L300 150'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Pipeline Risk</div>
+<div class='price'>£175</div>
+<button class='btn'>Add to Basket</button>
+</div>
+</div>
+
+<!-- Digital Insight -->
+<div class='card'>
+<div class='badge'>💼</div>
+<div class='info' onclick="toggle('t6')">i</div>
+<div class='tooltip' id='t6'>Multi-layer composite map combining all utilities</div>
+<div class='visual data'>
+<svg>
+<path d='M0 120 C100 40 200 120 300 40'/>
+<path class='alt' d='M0 80 C120 20 200 100 300 60'/>
+<path d='M0 140 C60 90 200 140 300 100'/>
+</svg>
+</div>
+<div class='content'>
+<div class='title'>Digital Insight Advanced</div>
+<div class='price'>Custom</div>
+<button class='btn'>View Service</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class='basket'>
+<h3>Basket</h3>
+<p>£0</p>
+</div>
+</div>
+
+<script>
+function toggle(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block'}
+</script>
+</body>
+</html>
